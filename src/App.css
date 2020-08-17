@@ -1,15 +1,38 @@
-.inner-addon {
-    position: relative;
+.search-box {
+    display: flex;
+    border: 1px solid #ced4da;
+    border-radius: .5rem;
 }
-.inner-addon img {
-    position: absolute;
-    padding: .6rem 1rem;
+.search-box:hover {
+    border: 1px solid #336EFF;
+    box-shadow: 0 0 1px 1px #336EFF;
 }
-.inner-addon .form-control {
-    padding-left: 3rem;
+.search-box img {
+    padding: 0 .5rem;
 }
-.inner-addon .form-control:focus {
-    border: 2px solid #336EFF;
+.search-box .location-list {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .9rem;
+}
+.search-box .location-list .location {
+    padding: .2rem .3rem;
+    margin-top: .25rem;
+    margin-right: .25rem;
+    background-color: #ebeff1;
+    color: #8d969e;
+    border-radius: .25rem;
+}
+.search-box .location-list .location .remove-icon {
+    font-weight: 800;
+    padding-left: .6rem;
+    cursor: pointer;
+}
+.search-box .form-control {
+    border: none;
+    padding: 0 .4rem;
+}
+.search-box .form-control:focus {
     box-shadow: none;
 }
 .search-result {

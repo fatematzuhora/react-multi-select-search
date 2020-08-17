@@ -17,6 +17,8 @@ interface MultiSelectProps {
     readOnly?: boolean;
     disabled?: boolean;
     addLocationData?: any;
+    removeLocationData?: any;
+    locationData: [];
 }
 
 const MultiSelectComponent = (props: MultiSelectProps) => {
@@ -29,27 +31,35 @@ const MultiSelectComponent = (props: MultiSelectProps) => {
                     </span>
                 </Form.Label>
                 
-                <div className="inner-addon left-addon">
+                <div className="search-box">
                     {props.leftIcon}
-                    <FormControl
-                        type="text"
-                        readOnly={props.readOnly}
-                        placeholder={props.placeholder? props.placeholder : undefined}
-                        onChange={e => props.onChange!(e.target.value)}
-                        disabled={props.disabled}
-                    />
+
+                    <div className="location-list">
+                        {props.locationData.map((i: any, index: number) => {
+                            return (
+                                <div className="location" key={index}>
+                                    {i.name}
+                                    <span className="remove-icon" onClick={() => {props.removeLocationData(i.asl)}}>
+                                        x
+                                    </span>
+                                </div>
+                            )
+                        })}
+                        <FormControl
+                            type="text"
+                            readOnly={props.readOnly}
+                            placeholder={props.placeholder? props.placeholder : undefined}
+                            onChange={e => props.onChange!(e.target.value)}
+                            disabled={props.disabled}
+                        />
+                    </div>
                 </div>
 
                 {props.items.length > 0 ?
                     <div className="search-result">
                         {props.items.map((i: any, index: number) => {
                             return (
-                                <li key={index}
-                                    onClick={() => {
-                                        console.log(i);
-                                        props.addLocationData(i);
-                                    }}
-                                >
+                                <li key={index} onClick={() => {props.addLocationData(i)}}>
                                     {i.name}, <span className="country">{i.country}</span>
                                 </li>
                             )
@@ -70,6 +80,9 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
     addLocationData: (item: any) => {
         dispatch(addLocation(item));
+    },
+    removeLocationData: (id: number) => {
+        dispatch(removeLocation(id));
     },
 });
 
