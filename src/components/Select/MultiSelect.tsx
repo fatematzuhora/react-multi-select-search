@@ -7,7 +7,7 @@ import {
     removeLocation
 } from 'store/actions';
 
-interface MultiSelectProps {
+export interface MultiSelectProps {
     id: string;
     label: string;
     leftIcon: JSX.Element;
@@ -21,9 +21,9 @@ interface MultiSelectProps {
     locationData: [];
 }
 
-const MultiSelectComponent = (props: MultiSelectProps) => {
+export const MultiSelectComponent = (props: MultiSelectProps) => {
     return (
-        <Form>
+        <Form data-testid="select-form">
             <Form.Group id={props.id}>
                 <Form.Label>
                     <span className="font-weight-bold">
@@ -49,6 +49,7 @@ const MultiSelectComponent = (props: MultiSelectProps) => {
                             )
                         })}
                         <FormControl
+                            data-testid="search-query"
                             type="text"
                             readOnly={props.readOnly}
                             placeholder={props.placeholder? props.placeholder : undefined}
