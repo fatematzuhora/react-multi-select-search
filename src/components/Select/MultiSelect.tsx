@@ -39,7 +39,10 @@ const MultiSelectComponent = (props: MultiSelectProps) => {
                             return (
                                 <div className="location" key={index}>
                                     {i.name}
-                                    <span className="remove-icon" onClick={() => {props.removeLocationData(i.asl)}}>
+                                    <span className="remove-icon" onClick={() => {
+                                            props.removeLocationData(i.asl, i.name)
+                                        }}
+                                    >
                                         x
                                     </span>
                                 </div>
@@ -81,8 +84,8 @@ const mapDispatchToProps = (dispatch: any) => ({
     addLocationData: (item: any) => {
         dispatch(addLocation(item));
     },
-    removeLocationData: (id: number) => {
-        dispatch(removeLocation(id));
+    removeLocationData: (id: number, name: string) => {
+        dispatch(removeLocation(id, name));
     },
 });
 

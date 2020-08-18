@@ -12,11 +12,12 @@ export const addLocation = (item: any) => {
     }
 }
 
-export const removeLocation = (id: number) => {
+export const removeLocation = (id: number, name: string) => {
     return {
         type: REMOVE_LOCATION,
         payload: {
-            id: id
+            id: id,
+            name: name
         }
     }
 }

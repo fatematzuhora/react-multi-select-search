@@ -8,12 +8,12 @@ let initialState: any = {
     items: []
 }
 
-const checkItem = (state: any, id: number) => {
+const checkItem = (state: any, id: number, name: string) => {
     let data = state.items;
     if (data.length === 0) {
         return { flag: -1};
     } else {
-        const index = data.findIndex((x: any) => x.asl === id);
+        const index = data.findIndex((x: any) => x.asl === id && x.name === name);
 
         if (index === -1) {
             return { flag: -1 };
@@ -31,8 +31,9 @@ const locationReducer = (state = initialState, action: any) => {
 
     switch(action.type) {
         case ADD_LOCATION:
-            let id = action.payload.item.asl;
-            check = checkItem(state, id);
+            let id = action.payload.item.asl,
+                name = action.payload.item.name;
+            check = checkItem(state, id, name);
 
             if (check.flag === -1) {
                 state.items = [
@@ -46,7 +47,9 @@ const locationReducer = (state = initialState, action: any) => {
         
         case REMOVE_LOCATION:
             for (let i = 0; i < state.items.length; i++) {
-                if (state.items[i].asl === action.payload.id) {
+                if (state.items[i].asl === action.payload.id
+                    && state.items[i].name === action.payload.name
+                ) {
                     state.items.splice(i, 1);
                     break;
                 }
