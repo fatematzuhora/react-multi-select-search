@@ -30,10 +30,6 @@ touch .env
 
 #### Sample .env file
 ```
-# .env file
-NODE_PATH=./src
-ROOT_DIR=./
-
 # environment variables
 REACT_APP_NODE_ENV="dev"
 REACT_APP_API_BASE_URL=https://www.meteoblue.com
